@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form">
+
+        <div class="inner_part">
+
+          <dvi class="search_form">
+              <form onsubmit="return false;">
+            <input id='inp' type="text" placeholder="">
+            </form>
+            <div class="scopePicture"><img src="./img/scope.svg"></div>
+          </dvi>
+
+        <div class="content">
+
+            <div class="left_part">
+
+                <div class="display_left" id='showNow'>
+                        <div class="forPosition">
+                            <div class="temp"><p class='bigNumber'></p></div>
+                            <div class="bigCloudPicture"><img class='bigCloudIcon' src=""></div>
+                            <div class="cityName"><p class="text smalSityName"></p></div>
+                            <div class="heart_picture"><img src="./img/heart.svg" alt=""></div>
+                        </div>
+                </div> 
+
+                <div class="display_left" id='showDetails'>
+                        <p class="text showDetailsHeader"></p>
+                        <p class="text detailsTemp"></p>
+                        <p class="text detailsFeels"></p>
+                        <p class="text detailsWeather"></p>
+                        <p class="text detailsSunrise"></p>
+                        <p class="text detailsSunset"></p>
+                </div>
+
+                 <div class="display_left" id='showForecast'>
+
+                        <p class="text forecastHeader"></p>
+                       
+                </div>   
+
+                <div class="buttons">
+                    <div class="now button  smalText">
+                        <p class="nowP">Now</p>
+                    </div>
+                    <div class="button details smalText">
+                        <p class="detailsP">Details</p>
+                    </div>
+                    <div class="button forecast smalText">
+                        <p class="forecastP">Forecast</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="right_part">
+                
+                <div class="right_header">
+                    <p class=" text right_headerText">Added Locations</p>
+                </div>
+                <div class="display_right">
+
+                </div>
+            </div>
+        </div>
+       </div>
+    </div>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
+

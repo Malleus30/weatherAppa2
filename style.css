@@ -1,0 +1,289 @@
+html{
+    font-family: Roboto;
+    box-sizing: border-box;
+}
+*,*::before,*::after{
+    box-sizing: inherit;
+}
+
+
+
+.form{
+    height: 462px;
+    width: 621px;
+    margin: 0px auto;
+    margin-top: 70px;
+    padding: 5px;
+    align-items: center;
+}
+
+.inner_part{
+    width: 600px;
+    height: 448px;
+    margin: 5px auto;
+    border: 1px solid black;
+}
+
+
+
+.search_form{
+    display: block;
+    height: 45px;
+    width: 600px;
+    border-bottom: 1px solid black;
+    position: relative;
+}
+
+.scopePicture{
+    position: absolute;
+    top:10px;
+    right: 30px;
+}
+
+#inp{
+    height: 45px;
+    width: 600px;
+}
+
+.content{
+    height: 390px;
+    width: 600px;
+    display: grid;
+    grid-template-areas: 'left right';
+}
+
+.left_part{
+    grid-area: left;
+    border-right: 1px solid rgba(0, 0, 0, 1);
+    border-left: 1px solid black;
+    width: 300px;
+    position: relative;
+}
+
+.display_left{
+    height: 355px;
+    width: 300px;
+    position: relative;
+    border-bottom: 1px solid black;
+}
+
+#showNow{
+    position: absolute;
+    top:0px;
+    left: 0px;
+  /*  display: none;*/
+}
+
+.forPosition{
+    position: relative;
+}
+
+.bigNumber{
+    font-size: 70px;
+    line-height: 82px;
+    position: absolute;
+    top: -60px;
+    left: 20px;
+}
+
+.bigCloudPicture{
+    position: absolute;
+    left: 50px;
+    top:80px;
+}
+.heart_picture{
+    position: absolute;
+    bottom: -350px;
+    right: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+
+.cityName{
+    position: absolute;
+    top: 300px;
+}
+
+
+#showDetails{
+    position: absolute;
+    top:0px;
+    left: 0pxs;
+   /* display: none; */
+}
+.showDetailsHeader{
+    margin-bottom: 40px;
+}
+
+#showForecast{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    overflow-y: scroll;
+    /*display: none; */
+}
+
+
+.weather_window{
+    display: flex;
+    height: 120px;
+    width: 265px;
+    border: 1px solid black;
+    margin: 9px auto;
+    position: relative;
+}
+
+.date{
+    position: absolute;
+    top:0px;
+    left: 5px;
+}
+.time{
+    position: absolute;
+    top:0px;
+    right: 5px;
+}
+
+.temperature{
+    position: absolute;
+    left: 5px;
+    bottom: 30px;
+}
+
+.feelsLike{
+    position: absolute;
+    bottom:0px;
+    left: 5px;
+}
+
+.pictureHeader{
+    position: absolute;
+    right: 7px;
+    bottom: 30px;
+}
+
+.picture{
+    position: absolute;
+    bottom: 0px;
+    right: 5px;
+}
+
+.text{
+    font-size: 24px;
+    line-height: 28px;
+    color: #000000;
+    margin-left: 18px;
+}
+
+.smalText{
+    font-size: 18px;
+    line-height: 22px;
+}
+
+
+
+.buttons{
+    display: block;
+    height: 45px;
+    width: 298;
+    margin-bottom: 0px;
+    display: grid;
+    left: -1px;
+    grid-template-areas: 'now details forecast';
+    position: absolute;
+    bottom: 1px;
+    border-top: 1px solid black;
+    cursor: pointer;
+    user-select: none;
+}
+
+.button{
+    width: 100px;
+    height: 45px;
+    background-color: white;
+    text-align: center;
+    border-right: 1px solid black;
+    z-index: 3;
+}
+
+.button:hover{
+    filter: brightness(90%);
+}
+
+.button:active{
+    background-color: black;
+}
+
+.nowP, .detailsP, .forecastP{
+    cursor: pointer;
+    user-select: none;
+}
+
+
+.right_part{
+    grid-area: right;
+    width: 300px;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.right_header{
+    height:70px;
+    background-color: white;
+    display: flex;
+    margin-bottom: 0px;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+
+
+.display_right{
+    width: 300px;
+    height: 330px;
+    max-height: 330px;
+    margin-top: 0px;
+    overflow-y: auto;
+}
+
+.display_right::-webkit-scrollbar{
+    display: none;
+}
+
+
+.faforedPlace{
+    position: relative;
+}
+
+.close{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    z-index: 3;
+    right: -5px;
+    top: -5px;
+    cursor: pointer;
+}
+
+.line_rotate45{
+    display: block;
+    height: 1px;
+    background-color:black;
+    position: absolute;
+    top:50%;
+    width: 20px;
+}
+
+.line_rotate45:first-child{
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.line_rotate45:last-child{
+    transform: translateY(-50%) rotate(-45deg);
+}
+
+.loadFavoriteOne{
+    cursor: pointer;
+    user-select: none;
+}
+
