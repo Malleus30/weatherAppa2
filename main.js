@@ -16,7 +16,6 @@ let globalCityName='';
 
   inp.addEventListener('keydown', (e) =>{
     
-  
     if(e.keyCode===13){
      const cityName = e.target.value;
 
@@ -42,13 +41,11 @@ let globalCityName='';
     
     this.parentElement.remove();
     
-    let key = this.previousElementSibling.textContent;
+    const key = this.previousElementSibling.textContent;
 
-
-   let array = STORAGE.getFavoredFromStorage();
-    let index = array.indexOf(key)
+   const array = STORAGE.getFavoredFromStorage();
+   const index = array.indexOf(key);
     
-
     array.splice(index,1);
   
     STORAGE.setFavoredToStorage(array);
@@ -131,9 +128,9 @@ const renderForecast = data => {
 
  function addLocation(){
 
-  let  array = STORAGE.getFavoredFromStorage() || [];
+  const  array = STORAGE.getFavoredFromStorage() || [];
 
-  let check = array.indexOf(globalCityName);
+  const check = array.indexOf(globalCityName);
 
   if (check===-1) {
     array.push(globalCityName);
@@ -151,7 +148,7 @@ STORAGE.setFavoredToStorage(array);
 
 function renderFavoritePlaces(){
 
- let  array = STORAGE.getFavoredFromStorage();
+ const  array = STORAGE.getFavoredFromStorage();
 
  if(!array) return;
 
@@ -188,7 +185,7 @@ function addFetchRequestForFavorite(){
 
 
 function fetch_Request_For_Favorite(event){
-    let cityName = event.target.textContent;
+    const cityName = event.target.textContent;
      ultimateFetchRequest(cityName); 
 }
 
@@ -196,14 +193,14 @@ function fetch_Request_For_Favorite(event){
 
 function ultimateFetchRequest(cityName){
 
-  const serverUrl = 'https://api.openweathermap.org/data/2.5/weather';                                         
-  const apiKey = 'd54171d8f8672f7f9694fda045ed8d16';
-  const url = `${serverUrl}?q=${cityName}&appid=${apiKey}`;
+  const SERVER_URL = 'https://api.openweathermap.org/data/2.5/weather';                                         
+  const API_KEY = 'd54171d8f8672f7f9694fda045ed8d16';
+  const url = `${SERVER_URL}?q=${cityName}&appid=${API_KEY}`;
 
   UI.heart_picture.style.display= 'block';
   
-  const foreCastServerUrl = 'https://api.openweathermap.org/data/2.5/forecast'
-  const forecastUrl = `${foreCastServerUrl}?q=${cityName}&appid=${apiKey}&units=metric`;
+  const FORECAST_SERVER_URL = 'https://api.openweathermap.org/data/2.5/forecast'
+  const forecastUrl = `${FORECAST_SERVER_URL}?q=${cityName}&appid=${API_KEY}&units=metric`;
 
   fetch(url)
 
@@ -229,7 +226,7 @@ function ultimateFetchRequest(cityName){
 
 function loadFromLocalStorage(){
 
-    let cityName =  STORAGE.getLastlocation();                          
+    const cityName =  STORAGE.getLastlocation();                          
     if(!cityName) return;  
   
     ultimateFetchRequest(cityName);
@@ -244,12 +241,10 @@ function loadFromLocalStorage(){
 }
 
 
-
-
 function timeTransform(data){
 
   const date = new Date(data);
-  let hours = date.getHours();
+  const hours = date.getHours();
   let minutes = date.getMinutes();
   minutes = (minutes<10) ? '0'+minutes: minutes;
   return `${hours}:${minutes}`;
@@ -257,7 +252,7 @@ function timeTransform(data){
 
 function timeTransformIntoDay(data){
   const date = new Date(data);
-  let  options = { month: 'short', day: 'numeric' };
+  const options = { month: 'short', day: 'numeric' };
 return (new Intl.DateTimeFormat('de-DE', options).format(date));
   
 }
