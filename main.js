@@ -19,7 +19,7 @@ let globalCityName='';
     if(e.keyCode===13){
      const cityName = e.target.value;
 
-     ultimateFetchRequest(cityName);
+     fetchRequest(cityName);
        
        showNow.style.display = 'block';
        showDetails.style.display = 'none';
@@ -42,13 +42,11 @@ let globalCityName='';
     this.parentElement.remove();
     
     const key = this.previousElementSibling.textContent;
-
-   const array = STORAGE.getFavoredFromStorage();
-   const index = array.indexOf(key);
-    
-    array.splice(index,1);
   
-    STORAGE.setFavoredToStorage(array);
+    const set = new Set(STORAGE.getFavoredFromStorage());
+    set.delete(key);
+
+    STORAGE.setFavoredToStorage([...set]);
 }
  
 
@@ -128,19 +126,15 @@ const renderForecast = data => {
 
  function addLocation(){
 
-  const  array = STORAGE.getFavoredFromStorage() || [];
+const  set = new Set(STORAGE.getFavoredFromStorage()) || new Set();
 
-  const check = array.indexOf(globalCityName);
+set.add(globalCityName);
 
-  if (check===-1) {
-    array.push(globalCityName);
-}
- 
-STORAGE.setFavoredToStorage(array);
+STORAGE.setFavoredToStorage([...set]);
 
-  renderFavoritePlaces()
+  renderFavoritePlaces();
 
-  addRemovalElement()
+  addRemovalElement();
 }
 
 
@@ -148,13 +142,13 @@ STORAGE.setFavoredToStorage(array);
 
 function renderFavoritePlaces(){
 
- const  array = STORAGE.getFavoredFromStorage();
+const set = new Set(STORAGE.getFavoredFromStorage());
 
- if(!array) return;
+if(!set) return;
 
   UI.displayRightDiv.innerHTML='';
   
-  array.forEach(city =>{  
+  set.forEach(city =>{  
 
     let newLocation = document.createElement('div');
   
@@ -186,12 +180,12 @@ function addFetchRequestForFavorite(){
 
 function fetch_Request_For_Favorite(event){
     const cityName = event.target.textContent;
-     ultimateFetchRequest(cityName); 
+     fetchRequest(cityName); 
 }
 
 
 
-function ultimateFetchRequest(cityName){
+function fetchRequest(cityName){
 
   const SERVER_URL = 'https://api.openweathermap.org/data/2.5/weather';                                         
   const API_KEY = 'd54171d8f8672f7f9694fda045ed8d16';
@@ -229,7 +223,7 @@ function loadFromLocalStorage(){
     const cityName =  STORAGE.getLastlocation();                          
     if(!cityName) return;  
   
-    ultimateFetchRequest(cityName);
+    fetchRequest(cityName);
 
     addRemovalElement();
   
