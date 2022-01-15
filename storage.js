@@ -10,8 +10,8 @@ export const STORAGE = {
     return JSON.parse(localStorage.getItem(LAST_LOCATION));  
 },
 
-    setLastLocation(globalCityName){
-    localStorage.setItem(LAST_LOCATION, JSON.stringify(globalCityName));
+    setLastLocation(cityName){
+    localStorage.setItem(LAST_LOCATION, JSON.stringify(cityName));
 },
 
      setFavoredToStorage(array){

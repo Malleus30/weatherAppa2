@@ -4,8 +4,6 @@ import {UI} from './view.js';
 import { FORECAST_UI } from './view.js';
 import {STORAGE} from './storage.js';
 
-let globalCityName='';
-
 
   UI.btn.addEventListener('click',change);
 
@@ -90,9 +88,6 @@ const render = data =>{
     UI.detailsSunset.textContent = `Sunset: ${timeTransform(data.sys.sunset)}pm`;
 
     UI.smalSityName.textContent = data.name;
-
-    globalCityName = UI.smalSityName.textContent;
-
 }
 
 const renderForecast = data => {
@@ -127,8 +122,9 @@ const renderForecast = data => {
  function addLocation(){
 
 const  set = new Set(STORAGE.getFavoredFromStorage()) || new Set();
+const cityName = STORAGE.getLastlocation();
 
-set.add(globalCityName);
+set.add(cityName);
 
 STORAGE.setFavoredToStorage([...set]);
 
@@ -136,8 +132,6 @@ STORAGE.setFavoredToStorage([...set]);
 
   addRemovalElement();
 }
-
-
 
 
 function renderFavoritePlaces(){
@@ -204,7 +198,7 @@ function fetchRequest(cityName){
   })
   .then( (data)=>{
    render(data);
-   STORAGE.setLastLocation(globalCityName);
+   STORAGE.setLastLocation(data.name);
   })
   .catch(error => alert(error.message));
 
