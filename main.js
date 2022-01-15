@@ -40,7 +40,7 @@ import {STORAGE} from './storage.js';
     this.parentElement.remove();
     
     const key = this.previousElementSibling.textContent;
-  
+                                                                    //set here
     const set = new Set(STORAGE.getFavoredFromStorage());
     set.delete(key);
 
@@ -120,7 +120,7 @@ const renderForecast = data => {
 
 
  function addLocation(){
-
+                                                                            //set here
 const  set = new Set(STORAGE.getFavoredFromStorage()) || new Set();
 const cityName = STORAGE.getLastlocation();
 
@@ -135,7 +135,7 @@ STORAGE.setFavoredToStorage([...set]);
 
 
 function renderFavoritePlaces(){
-
+                                                                //set here
 const set = new Set(STORAGE.getFavoredFromStorage());
 
 if(!set) return;
