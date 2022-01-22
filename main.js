@@ -10,8 +10,6 @@ import {STORAGE} from './storage.js';
   UI.heart_picture.style.display = 'none';
   UI.heart_picture.addEventListener('click', addLocation);
 
-
-
   inp.addEventListener('keydown', (e) =>{
     
     if(e.keyCode===13){
@@ -27,20 +25,22 @@ import {STORAGE} from './storage.js';
 
 
   function addRemovalElement(){
+
     const deleteLocationIcon = document.querySelectorAll('.close');
-   
+
     deleteLocationIcon.forEach(function(btn){
-    btn.addEventListener('click',deleteLocationFunc);
+
+    btn.addEventListener('click',deleteLocation);
 })
 }
 
 
-  function deleteLocationFunc(){
+  function deleteLocation(){
     
     this.parentElement.remove();
     
     const key = this.previousElementSibling.textContent;
-                                                                    //set here
+                                                                       
     const set = new Set(STORAGE.getFavoredFromStorage());
     set.delete(key);
 
@@ -48,29 +48,36 @@ import {STORAGE} from './storage.js';
 }
  
 
-
-function change(event){
+                                                                      //dinamic module here
+async function change(event){
  
-  if(event.target.classList.contains('now'))  show(showNow);
-  if(event.target.classList.contains('nowP')) show(showNow);
+  if(event.target.classList.contains('now')) {
+    let {show} = await import('./show.js');
+    show(showNow);
+  } 
+  if(event.target.classList.contains('nowP')) {
+    let {show} = await import('./show.js');
+    show(showNow);
+  }
 
-  if(event.target.classList.contains('details'))  show(showDetails);
-  if(event.target.classList.contains('detailsP'))  show(showDetails);
+  if(event.target.classList.contains('details')) {
+    let {show} = await import('./show.js');
+    show(showDetails);
+  }
+  if(event.target.classList.contains('detailsP')) {
+    let {show} = await import('./show.js');
+    show(showDetails);
+  }
   
-  if(event.target.classList.contains('forecast'))  show(showForecast);
-  if(event.target.classList.contains('forecastP'))  show(showForecast);
+  if(event.target.classList.contains('forecast')) {
+    let {show} = await import('./show.js');
+    show(showForecast);
+  }
+  if(event.target.classList.contains('forecastP')) {
+    let {show} = await import('./show.js');
+    show(showForecast);
+  }
   
-}
-
-
-
-function show(id){
-
-showNow.style.display = 'none';
-showDetails.style.display = 'none';
-showForecast.style.display = 'none';
- 
-   id.style.display='block'
 }
 
 
@@ -120,7 +127,7 @@ const renderForecast = data => {
 
 
  function addLocation(){
-                                                                            //set here
+                                                                            
 const  set = new Set(STORAGE.getFavoredFromStorage()) || new Set();
 const cityName = STORAGE.getLastlocation();
 
@@ -135,7 +142,7 @@ STORAGE.setFavoredToStorage([...set]);
 
 
 function renderFavoritePlaces(){
-                                                                //set here
+                                                                
 const set = new Set(STORAGE.getFavoredFromStorage());
 
 if(!set) return;
@@ -166,9 +173,12 @@ function addFetchRequestForFavorite(){
 
   const arr  =  document.querySelectorAll('.loadFavoriteOne'); 
 
-  arr.forEach(elem => {
-    elem.addEventListener('click', fetch_Request_For_Favorite);
-  })
+  addListener(arr);      
+}
+                                                                                         // recursion here
+function addListener(arr, i=0){
+  arr[i].addEventListener('click', fetch_Request_For_Favorite);
+  if(i<arr.length-1) addListener(arr, i+1);
 }
 
 
@@ -176,7 +186,6 @@ function fetch_Request_For_Favorite(event){
     const cityName = event.target.textContent;
      fetchRequest(cityName); 
 }
-
 
 
 function fetchRequest(cityName){
